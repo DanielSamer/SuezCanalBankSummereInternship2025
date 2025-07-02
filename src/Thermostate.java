@@ -4,7 +4,7 @@ public class Thermostate extends AbstractSmartDevice {
 
     public Thermostate(String name) {
         super(name);
-        this.temperature = 20; // Default temperature
+        this.temperature = 28; // Default temperature
     }
 
     @Override
