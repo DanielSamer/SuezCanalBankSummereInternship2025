@@ -1,3 +1,5 @@
+import Exceptions.InvalidDeviceOperationException;
+
 public class Thermostate extends AbstractSmartDevice {
 
     private int temperature;
@@ -22,7 +24,10 @@ public class Thermostate extends AbstractSmartDevice {
         return getName() + " is set to " + temperature + "°C.";
     }
 
-    public void setTemperature(int temperature) {
+    public void setTemperature(int temperature) throws InvalidDeviceOperationException{
+        if (temperature < 0 || temperature > 60 ) {
+            throw new InvalidDeviceOperationException("Temperature must be between 0 and 60 degrees Celsius.");
+        }
         this.temperature = temperature;
         System.out.println(getName() + " temperature set to " + temperature + "°C.");
     }

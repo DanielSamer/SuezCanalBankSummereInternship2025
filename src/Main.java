@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 
+import Exceptions.InvalidDeviceOperationException;
+
 public class Main {
-    public static void main (String[] args) {
+    public static void main (String[] args) throws Exceptions.InvalidDeviceOperationException {
         ArrayList<SmartDevice> devices = new ArrayList<>();
         
         // Smart Device howa el interface el 3amalnah 
@@ -24,7 +26,13 @@ public class Main {
 
         // Adjust temperature and brightness
         ((Thermostate) thermostat).setTemperature(22);
-        ((Light) light).setBrightness(90);
+
+        try {
+            ((Light) light).setBrightness(120); // invalid to throw exceptiom
+        } catch (InvalidDeviceOperationException e) {
+            System.out.println("Light error: " + e.getMessage());
+        }
+
         ((SmartLock) lock).lockbtn();
 
         System.out.println("\n\nAfter adjustments:\n");
